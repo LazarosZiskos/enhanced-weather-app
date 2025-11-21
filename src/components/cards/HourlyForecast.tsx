@@ -8,7 +8,7 @@ type Props = {};
 function HourlyForecast({}: Props) {
   const { data } = useSuspenseQuery({
     queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 10, lon: 25 }),
+    queryFn: () => getWeather({ lat: 37, lon: 23 }),
   });
   return (
     <Card

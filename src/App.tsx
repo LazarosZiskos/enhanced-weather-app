@@ -3,11 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import DailyForecast from "./components/cards/DailyForecast";
 import HourlyForecast from "./components/cards/HourlyForecast";
 import CurrentWeather from "./components/cards/CurrentWeather";
+import AdditionalInfo from "./components/cards/AdditionalInfo";
 
 function App() {
   const { data } = useQuery({
     queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 60, lon: 100 }),
+    queryFn: () => getWeather({ lat: 37, lon: 23 }),
   });
 
   return (
@@ -15,6 +16,7 @@ function App() {
       <CurrentWeather />
       <HourlyForecast />
       <DailyForecast />
+      <AdditionalInfo />
     </div>
   );
 }

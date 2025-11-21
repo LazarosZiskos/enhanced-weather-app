@@ -8,7 +8,7 @@ type Props = {};
 function DailyForecast({}: Props) {
   const { data } = useSuspenseQuery({
     queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 20, lon: 20 }),
+    queryFn: () => getWeather({ lat: 37, lon: 23 }),
   });
   return (
     <Card title="Daily Forecast" childrenClassName="flex flex-col gap-4">
