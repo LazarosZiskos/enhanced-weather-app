@@ -5,12 +5,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import type { Dispatch, SetStateAction } from "react";
 
-type Props = {};
+type Props = {
+  location: string;
+  setLocation: Dispatch<SetStateAction<string>>;
+};
 
-function LocationDropdown({}: Props) {
+function LocationDropdown({ location, setLocation }: Props) {
   return (
-    <Select>
+    <Select value={location} onValueChange={(value) => setLocation(value)}>
       <SelectTrigger className="w-[180px] ">
         <SelectValue placeholder="Athens" />
       </SelectTrigger>
@@ -31,7 +35,6 @@ const locations = [
   "Athens",
   "Paris",
   "Tokyo",
-  "New York",
   "London",
   "Dubai",
   "Rome",
