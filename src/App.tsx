@@ -3,11 +3,22 @@ import HourlyForecast from "./components/cards/HourlyForecast";
 import CurrentWeather from "./components/cards/CurrentWeather";
 import AdditionalInfo from "./components/cards/AdditionalInfo";
 import Map from "./components/Map";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Coords } from "./types";
-import LocationDropdown from "./components/dropdowns/LocationDropdown";
 import { useQuery } from "@tanstack/react-query";
 import { getGeocode } from "./api";
+import LocationDropdown from "./components/dropdowns/LocationDropdown";
+
+function useDebouncedValue<T>(value: T, delay = 500) {
+  const [debounced, setDebounced] = useState(value);
+
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(id);
+  }, [value, delay]);
+
+  return debounced;
+}
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({ lat: 10, lon: 55 });
@@ -23,7 +34,8 @@ function App() {
     setLocation("custom");
   }
 
-  // if we are taking coords from the map click then use 'coordinates' else setLocation to be equal to the geocode data
+  // if we are taking coords from the map click then use 'coordinates' else setLocation to be equal
+  // to the geocode data
 
   const coords =
     location === "custom"
